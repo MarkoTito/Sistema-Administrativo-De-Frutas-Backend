@@ -11,5 +11,6 @@ Route::get('/user', function (Request $request) {
 
 //auth
 Route::post('auth/login',[UserController::class,'login']);
+Route::post('auth/make/user',[UserController::class,'store']);
 //Provedor
 Route::post('provedor/store',[ProvedorController::class,'store']);

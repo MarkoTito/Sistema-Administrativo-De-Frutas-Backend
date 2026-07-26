@@ -22,7 +22,7 @@ class UserController extends Controller
         $usuarios = DB::select('SELECT * FROM sp_login(?)', [$email]);
 
         if (empty($usuarios)) {
-            return response()->json(['mensaje' => 'Credenciales inválidas','error' => '100'], 401);
+            return response()->json(['mensaje' => 'Credenciales inválidas', 'error' => '100'], 401);
         }
 
         $usuario = $usuarios[0];
@@ -44,11 +44,30 @@ class UserController extends Controller
                 'cliente' => $usuario,
                 'error' => '0'
             ], 200);
-
         } else {
-            return response()->json(['mensaje' => 'Credenciales inválidas','error' => '100'], 401);
+            return response()->json(['mensaje' => 'Credenciales inválidas', 'error' => '100'], 401);
         }
     }
 
+    public function store(Request $request)
+    {
+        $request->validate([
+            's_nombre' => 'required|string',
+            's_email' => 'required|string',
+            's_password' => 'required|string',
+        ]);
 
+        $p_nombre = $request->s_nombre;
+        $p_emil = $request->s_email;
+        $p_password = Hash::make($request->s_password) ;
+
+
+        $respuesta = DB::select('SELECT * FROM fn_insertar_usuario(?,?,?)', [$p_nombre, $p_emil, $p_password]);
+
+        return response()->json([$respuesta]);
+
+        //al del front, te retorno un mensaje y un error si el valor del error es 0 esta bien, caso contrario algo fallo
+
+
+    }
 }
