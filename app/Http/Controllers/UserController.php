@@ -67,7 +67,25 @@ class UserController extends Controller
         return response()->json([$respuesta]);
 
         //al del front, te retorno un mensaje y un error si el valor del error es 0 esta bien, caso contrario algo fallo
+    }
 
+
+    public function asignacionRol(Request $request)
+    {
+        $request->validate([
+            's_id_user' => 'required',
+            's_id_rol' => 'required',
+            
+        ]);
+
+        $p_idusuario = $request->s_id_user;
+        $p__idrol = $request->s_id_rol;
+
+        $usuario = User::find(1); 
+
+        $usuario->assignRole('viewer');
+
+        return response()->json([$usuario]);
 
     }
 }
