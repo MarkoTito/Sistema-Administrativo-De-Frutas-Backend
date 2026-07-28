@@ -68,8 +68,57 @@ class UserController extends Controller
 
         //al del front, te retorno un mensaje y un error si el valor del error es 0 esta bien, caso contrario algo fallo
     }
+    //para listar usuarios
+    public function index(Request $request)
+    {
+        $request->validate([
+            's_nada' => 'required',
+        ]);
+
+        $respuesta = DB::select('SELECT * FROM spu_listar_users()');
+
+        return response()->json([$respuesta]);
+
+    }
+
+    public function editarUsuario(Request $request)
+    {
+        $request->validate([
+            's_id' => 'required',
+            's_nombre' => 'required|string',
+            's_email' => 'required|string',
+            's_documento' => 'required|string',
+        ]);
+
+        $p_id = $request->s_id;
+        $p_nombre = $request->s_nombre;
+        $p_emil = $request->s_email;
+        $p_identificador = $request->s_documento;
 
 
+        $respuesta = DB::select('SELECT * FROM spu_users_upd(?,?,?,?)', [$p_id, $p_nombre, $p_emil, $p_identificador]);
+
+        return response()->json([$respuesta]);
+
+    }
+
+    public function cambiarEstadoUsuario(Request $request)
+    {
+        $request->validate([
+            's_id_user' => 'required',
+        ]);
+
+        $p_id = $request->s_id_user;
+
+        $respuesta = DB::select('SELECT * FROM spu_cambiar_estado(?)', [ $p_id]);
+
+        return response()->json([$respuesta]);
+
+    }
+
+    
+
+    //aun esta en pruba
     public function asignacionRol(Request $request)
     {
         $request->validate([
