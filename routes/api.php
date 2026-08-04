@@ -20,7 +20,9 @@ Route::post('auth/cambiar-contra/user',[UserController::class,'cambiarEstadoUsua
 Route::post('auth/roler-user/asignar',[UserController::class,'asignacionRol']);
 
 //Provedor
+Route::get('provedor/index',[ProvedorController::class,'index']);
 Route::post('provedor/store',[ProvedorController::class,'store']);
+Route::post('provedor/cambiar-estado',[ProvedorController::class,'changer']);
 
 //COMPRA
 Route::post('compra/store',[CompraController::class,'store']);

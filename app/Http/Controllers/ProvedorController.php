@@ -8,6 +8,14 @@ use Illuminate\Support\Facades\DB;
 class ProvedorController extends Controller
 {
 
+    public function index()
+    {
+        // lista de provedores
+        $respuesta = DB::select('SELECT * FROM fn_listar_proveedor()');
+
+        return response()->json([$respuesta]);
+    }
+
     public function store(Request $request)
     {
         $request->validate([
@@ -29,7 +37,20 @@ class ProvedorController extends Controller
         return response()->json([$respuesta]);
 
         //al del front, te retorno un mensaje y un error si el valor del error es 0 esta bien, caso contrario algo fallo
+    }
 
+    public function changer(Request $request)
+    {
+        $request->validate([
+            's_id' => 'required',
+        ]);
 
+        $p_id = $request->s_id;
+
+        $respuesta = DB::select('SELECT * FROM spu_proveedores_cambiar_estado(?)', [$p_id]);
+
+        return response()->json([$respuesta]);
+
+        //al del front, te retorno un mensaje y un error si el valor del error es 0 esta bien, caso contrario algo fallo
     }
 }
