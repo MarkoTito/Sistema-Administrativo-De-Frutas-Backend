@@ -55,14 +55,16 @@ class UserController extends Controller
             's_nombre' => 'required|string',
             's_email' => 'required|string',
             's_password' => 'required|string',
+            's_documento' => 'required|string',
         ]);
 
         $p_nombre = $request->s_nombre;
         $p_emil = $request->s_email;
         $p_password = Hash::make($request->s_password) ;
+        $p_identificador = $request->s_documento;
 
 
-        $respuesta = DB::select('SELECT * FROM fn_insertar_usuario(?,?,?)', [$p_nombre, $p_emil, $p_password]);
+        $respuesta = DB::select('SELECT * FROM fn_insertar_usuario(?,?,?,?)', [$p_nombre, $p_emil, $p_password, $p_identificador]);
 
         return response()->json([$respuesta]);
 
