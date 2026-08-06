@@ -16,10 +16,15 @@ class CompraController extends Controller
             's_fecha' => 'required',
             's_observacion' => 'required|string',
             's_total' => 'required',
+            's_cost_adi' => 'required',
             //para insertar en la tabla relacion
             's_id_fru' => 'required',
             's_cantidad' => 'required',
             's_subtotal' => 'required',
+            //calidades de frutas
+            's_cantA' => 'required',
+            's_cantB' => 'required',
+            's_cantC' => 'required'
 
         ]);
 
@@ -28,19 +33,24 @@ class CompraController extends Controller
         $p_fecha = $request->s_fecha;
         $p_obs = $request->s_observacion;
         $p_total = $request->s_total;
+        $p_cost_adi = $request->s_cost_adi;
         $id_venta = 0 ;
 
         $p_id_fruta = $request->s_id_fru;
         $p_cantidad = $request->s_cantidad;
         $p_precio_uni = $request->s_subtotal;
 
+        $p_cantA = $request->s_cantA;
+        $p_cantB = $request->s_cantB;
+        $p_cantC = $request->s_cantC;
 
-        $respuesta = DB::select('SELECT * FROM public.spu_compra_ins(?,?,?,?,?)', [$p_codigo, $p_obs, $p_id_prove, $p_total ,$p_fecha]);
+
+        $respuesta = DB::select('SELECT * FROM public.spu_compra_ins(?,?,?,?,?,?)', [$p_cost_adi,$p_codigo, $p_obs, $p_id_prove, $p_total ,$p_fecha]);
 
         if ($respuesta[0]->error == 0 ) {
             $id_venta = $respuesta[0]->numid;
             //aca deberia ser un forech, pero como solo insertamos una fruta lo dejo asi :v
-            $respuesta0 = DB::select('SELECT * FROM public.spu_compra_fruta_ins(?,?,?,?)', [$p_id_fruta, $id_venta, $p_cantidad, $p_precio_uni]);
+            $respuesta0 = DB::select('SELECT * FROM public.spu_compra_fruta_ins(?,?,?,?,?,?,?)', [$p_id_fruta, $id_venta, $p_cantidad, $p_precio_uni,$p_cantA,$p_cantB,$p_cantC]);
             return response()->json([$respuesta0]);
         }
 

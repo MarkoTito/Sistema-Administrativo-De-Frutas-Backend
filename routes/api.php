@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CompraController;
+use App\Http\Controllers\FrutasController;
 use App\Http\Controllers\ProvedorController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
@@ -26,6 +27,10 @@ Route::post('provedor/cambiar-estado',[ProvedorController::class,'changer']);
 
 //COMPRA
 Route::post('compra/store',[CompraController::class,'store']);
+
+//fruta
+Route::post('fruta/listar',[FrutasController::class,'index']);
+
 
 
 
