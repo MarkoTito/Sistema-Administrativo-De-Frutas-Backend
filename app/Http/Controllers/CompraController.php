@@ -58,4 +58,28 @@ class CompraController extends Controller
 
         //al del front, te retorno un mensaje y un error si el valor del error es 0 esta bien, caso contrario algo fallo
     }
+
+    public function editarEstado(Request $request)
+    {
+        $request->validate([
+            's_id_compra' => 'required',
+            's_id_user' => 'required'
+
+        ]);
+
+        $p_id_compra = $request->s_id_compra;
+        $p_id_user = $request->s_id_user;
+
+        $respuesta = DB::select('SELECT * FROM public.cambiarEstadoCompra(?,?)', [ $p_id_compra, $p_id_user ]);
+        return response()->json([$respuesta]);
+
+    }
+
+    public function listarCompra(){
+
+        $respuesta= DB::select('select * from sp_listar_compra() ');
+        return response()->json([$respuesta]);
+    }
+
+
 }

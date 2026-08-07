@@ -27,6 +27,8 @@ Route::post('provedor/cambiar-estado',[ProvedorController::class,'changer']);
 
 //COMPRA
 Route::post('compra/store',[CompraController::class,'store']);
+Route::post('compra/editar-estado',[CompraController::class,'editarEstado']);
+Route::get('compra/index',[CompraController::class,'listarCompra']);
 
 //fruta
 Route::post('fruta/listar',[FrutasController::class,'index']);
