@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CamaraController;
 use App\Http\Controllers\CompraController;
 use App\Http\Controllers\FrutasController;
 use App\Http\Controllers\ProvedorController;
@@ -29,6 +30,9 @@ Route::post('provedor/cambiar-estado',[ProvedorController::class,'changer']);
 Route::post('compra/store',[CompraController::class,'store']);
 Route::post('compra/editar-estado',[CompraController::class,'editarEstado']);
 Route::get('compra/index',[CompraController::class,'listarCompra']);
+//camara
+Route::get('camara/index',[CamaraController::class,'index']);
+Route::get('camara/cantidades',[CamaraController::class,'listarCantidades']);
 
 //fruta
 Route::post('fruta/listar',[FrutasController::class,'index']);
