@@ -104,6 +104,21 @@ class UserController extends Controller
 
     }
 
+    public function cambiarContraUsuario(Request $request)
+    {
+        $request->validate([
+            's_id_user' => 'required|integer',
+            's_password' => 'required|string|min:8',
+        ]);
+
+        $respuesta = DB::select('SELECT * FROM spu_users_cambiar_contra(?,?)', [
+            $request->s_id_user,
+            Hash::make($request->s_password),
+        ]);
+
+        return response()->json([$respuesta]);
+    }
+
     public function cambiarEstadoUsuario(Request $request)
     {
         $request->validate([

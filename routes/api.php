@@ -18,7 +18,7 @@ Route::post('auth/listar-usuarios',[UserController::class,'index']);
 Route::post('auth/make/user',[UserController::class,'store']);
 Route::post('auth/update/user',[UserController::class,'editarUsuario']);
 Route::post('auth/cambiar-estado/user',[UserController::class,'cambiarEstadoUsuario']);
-Route::post('auth/cambiar-contra/user',[UserController::class,'cambiarEstadoUsuario']);
+Route::post('auth/cambiar-contra/user',[UserController::class,'cambiarContraUsuario']);
 Route::post('auth/roler-user/asignar',[UserController::class,'asignacionRol']);
 
 //Provedor
@@ -36,7 +36,6 @@ Route::get('camara/cantidades',[CamaraController::class,'listarCantidades']);
 
 //fruta
 Route::post('fruta/listar',[FrutasController::class,'index']);
-
 
 
 
