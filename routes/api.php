@@ -33,6 +33,7 @@ Route::get('compra/index',[CompraController::class,'listarCompra']);
 //camara
 Route::get('camara/index',[CamaraController::class,'index']);
 Route::get('camara/cantidades',[CamaraController::class,'listarCantidades']);
+Route::post('camara/one-lote',[CamaraController::class,'listarOneLote']);
 
 //fruta
 Route::post('fruta/listar',[FrutasController::class,'index']);

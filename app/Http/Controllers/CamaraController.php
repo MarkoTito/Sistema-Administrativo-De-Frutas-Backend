@@ -23,4 +23,18 @@ class CamaraController extends Controller
         $respuesta = DB::select('select * from sp_listar_cantidades() ');
         return response()->json([$respuesta]);
     }
+
+    public function listarOneLote(Request $request)
+    {
+
+        $request->validate([
+            'p_id_lote' => 'required',
+
+        ]);
+
+        $s_id_lote = $request->p_id_lote;
+
+        $respuesta = DB::select('select * from sp_listar_one_camara0(?)',[$s_id_lote]);
+        return response()->json([$respuesta]);
+    }
 }
