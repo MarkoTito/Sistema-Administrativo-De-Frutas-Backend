@@ -30,6 +30,9 @@ Route::post('provedor/cambiar-estado',[ProvedorController::class,'changer']);
 Route::post('compra/store',[CompraController::class,'store']);
 Route::post('compra/editar-estado',[CompraController::class,'editarEstado']);
 Route::get('compra/index',[CompraController::class,'listarCompra']);
+
+Route::post('compra/show',[CompraController::class,'show']);
+Route::post('compra/one-frutas',[CompraController::class,'onePeido']);
 //camara
 Route::get('camara/index',[CamaraController::class,'index']);
 Route::get('camara/cantidades',[CamaraController::class,'listarCantidades']);

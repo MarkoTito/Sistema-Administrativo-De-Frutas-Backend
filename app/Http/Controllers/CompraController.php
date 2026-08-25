@@ -81,7 +81,33 @@ class CompraController extends Controller
         return response()->json([$respuesta]);
     }
 
-  
+    public function show(Request $request)
+    {
+        $request->validate([
+            's_id_compra' => 'required'
+        ]);
+
+        $p_id_compra = $request->s_id_compra;
+
+        $respuesta = DB::select('SELECT * FROM public.sp_listar_datos_compra(?)', [ $p_id_compra ]);
+        return response()->json([$respuesta]);
+
+    }
+
+    public function onePeido(Request $request)
+    {
+        $request->validate([
+            's_id_compra' => 'required'
+        ]);
+
+        $p_id_compra = $request->s_id_compra;
+
+        $respuesta = DB::select('SELECT * FROM public.sp_listar_frutas_compra(?)', [ $p_id_compra ]);
+        return response()->json([$respuesta]);
+
+    }
+
+
 
 
 }
