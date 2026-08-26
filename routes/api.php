@@ -3,6 +3,7 @@
 use App\Http\Controllers\CamaraController;
 use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\CompraController;
+use App\Http\Controllers\EnvioController;
 use App\Http\Controllers\FrutasController;
 use App\Http\Controllers\ProvedorController;
 use App\Http\Controllers\UserController;
@@ -47,6 +48,8 @@ Route::post('fruta/listar',[FrutasController::class,'index']);
 //cliente
 Route::get('cliente/listar',[ClienteController::class,'index']);//nuevo
 Route::post('cliente/store',[ClienteController::class,'store']);//nuevo
+//venta
+Route::post('envio/store',[EnvioController::class,'store']);//nuevo
 
 
 
