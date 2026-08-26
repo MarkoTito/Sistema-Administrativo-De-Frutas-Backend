@@ -30,6 +30,7 @@ Route::post('provedor/cambiar-estado',[ProvedorController::class,'changer']);
 
 //COMPRA
 Route::post('compra/store',[CompraController::class,'store']);
+Route::post('compra/update',[CompraController::class,'update']);
 Route::post('compra/editar-estado',[CompraController::class,'editarEstado']);
 Route::post('compra/index',[CompraController::class,'listarCompra']);
 

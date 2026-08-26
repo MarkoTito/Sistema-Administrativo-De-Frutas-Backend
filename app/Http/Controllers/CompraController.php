@@ -59,6 +59,84 @@ class CompraController extends Controller
         //al del front, te retorno un mensaje y un error si el valor del error es 0 esta bien, caso contrario algo fallo
     }
 
+
+     public function update(Request $request)
+    {
+        $request->validate([
+            's_id_compra' => 'required',
+            's_estado' => 'required',            
+            's_codigo' => 'required',
+            's_id_provedor' => 'required',
+            's_fecha' => 'required',
+            's_observacion' => 'required|string',
+            's_total' => 'required',
+            's_cost_adi' => 'required',
+            //para insertar en la tabla relacion
+            's_id_fru' => 'required',
+            's_cantidad' => 'required',
+            's_subtotal' => 'required',
+            //calidades de frutas
+            's_cantA' => 'required',
+            's_cantB' => 'required',
+            's_cantC' => 'required'
+
+        ]);
+
+        $p_codigo = $request->s_codigo;
+        $p_id_prove = $request->s_id_provedor;
+        $p_fecha = $request->s_fecha;
+        $p_obs = $request->s_observacion;
+        $p_total = $request->s_total;
+        $p_cost_adi = $request->s_cost_adi;
+        $p_id_compra= $request->s_id_compra;
+        $p_estado= $request->s_estado;
+
+        $p_id_fruta = $request->s_id_fru;
+        $p_cantidad = $request->s_cantidad;
+        $p_precio_uni = $request->s_subtotal;
+
+        $p_cantA = $request->s_cantA;
+        $p_cantB = $request->s_cantB;
+        $p_cantC = $request->s_cantC;
+
+
+        $respuesta = DB::select('SELECT * FROM public.spu_compra_update(?,?,? ,?,?,? ,?,?)', [ $p_id_compra,$p_estado,$p_cost_adi,$p_codigo, $p_obs, $p_id_prove, $p_total ,$p_fecha]);
+
+        if ($respuesta[0]->error == 0 ) {
+            $p_id_pedido = $p_id_compra;
+            //aca deberia ser un forech, pero como solo insertamos una fruta lo dejo asi :v
+            $respuesta0 = DB::select('SELECT * FROM public.spu_compra_fruta_upd(?,?,? ,?,?,? ,?)', [$p_id_fruta, $p_id_pedido, $p_cantidad, $p_precio_uni,$p_cantA,$p_cantB,$p_cantC]);
+            return response()->json([$respuesta0]);
+        }
+
+        return response()->json([$respuesta]);
+
+        //al del front, te retorno un mensaje y un error si el valor del error es 0 esta bien, caso contrario algo fallo
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     public function editarEstado(Request $request)
     {
         $request->validate([
