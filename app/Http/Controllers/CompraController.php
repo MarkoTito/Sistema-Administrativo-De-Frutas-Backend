@@ -75,9 +75,19 @@ class CompraController extends Controller
 
     }
 
-    public function listarCompra(){
+    public function listarCompra(Request $request){
+        $request->validate([
+            's_estado' => 'required',
+            's_fechaDesde' => 'required',
+            's_fechaHasta' => 'required'
 
-        $respuesta= DB::select('select * from sp_listar_compra() ');
+        ]);
+
+        $p_estado = $request->s_estado;
+        $p_fechaDesde = $request->s_fechaDesde;
+        $p_fechaHasta = $request->s_fechaHasta;
+
+        $respuesta= DB::select('select * from sp_listar_compra(?,?,?)', [$p_estado, $p_fechaDesde, $p_fechaHasta]);
         return response()->json([$respuesta]);
     }
 
