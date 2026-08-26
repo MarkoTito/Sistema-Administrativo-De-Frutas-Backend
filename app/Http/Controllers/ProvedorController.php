@@ -72,7 +72,7 @@ class ProvedorController extends Controller
         $p_correo = $request->s_correo;
         $p_descripcion = $request->s_descripcion;
 
-        $respuesta = DB::select('SELECT * FROM fn_actualizar_proveedor(?,?,?,?,?,?)', [$p_id, $p_nombre, $p_cel, $p_telefono, $p_correo, $p_descripcion]);
+        $respuesta = DB::select('SELECT * FROM spu_proveedores_editar(?,?,?,?,?,?)', [$p_id, $p_nombre, $p_cel, $p_telefono, $p_correo, $p_descripcion]);
 
         return response()->json([$respuesta]);
     }
