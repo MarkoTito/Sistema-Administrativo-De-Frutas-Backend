@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CamaraController;
+use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\CompraController;
 use App\Http\Controllers\FrutasController;
 use App\Http\Controllers\ProvedorController;
@@ -23,6 +24,7 @@ Route::post('auth/roler-user/asignar',[UserController::class,'asignacionRol']);
 
 //Provedor
 Route::get('provedor/index',[ProvedorController::class,'index']);
+Route::post('provedor/update',[ProvedorController::class,'update']); //nuevo
 Route::post('provedor/store',[ProvedorController::class,'store']);
 Route::post('provedor/cambiar-estado',[ProvedorController::class,'changer']);
 
@@ -40,6 +42,10 @@ Route::post('camara/one-lote',[CamaraController::class,'listarOneLote']);
 
 //fruta
 Route::post('fruta/listar',[FrutasController::class,'index']);
+
+//cliente
+Route::get('cliente/listar',[ClienteController::class,'index']);//nuevo
+Route::post('cliente/store',[ClienteController::class,'store']);//nuevo
 
 
 

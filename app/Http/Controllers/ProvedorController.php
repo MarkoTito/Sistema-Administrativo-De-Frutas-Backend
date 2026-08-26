@@ -51,6 +51,29 @@ class ProvedorController extends Controller
 
         return response()->json([$respuesta]);
 
-        //al del front, te retorno un mensaje y un error si el valor del error es 0 esta bien, caso contrario algo fallo
+
+    }
+
+    public function update(Request $request)
+    {
+        $request->validate([
+            's_id' => 'required',
+            's_nombre' => 'required|string',
+            's_cel' => 'string',
+            's_telefono' => 'string',
+            's_correo' => 'required|string',
+            's_descripcion' => 'required|string',
+        ]);
+
+        $p_id = $request->s_id;
+        $p_nombre = $request->s_nombre;
+        $p_cel = $request->s_cel;
+        $p_telefono = $request->s_telefono;
+        $p_correo = $request->s_correo;
+        $p_descripcion = $request->s_descripcion;
+
+        $respuesta = DB::select('SELECT * FROM fn_actualizar_proveedor(?,?,?,?,?,?)', [$p_id, $p_nombre, $p_cel, $p_telefono, $p_correo, $p_descripcion]);
+
+        return response()->json([$respuesta]);
     }
 }
