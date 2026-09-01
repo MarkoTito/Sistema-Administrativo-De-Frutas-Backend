@@ -7,6 +7,7 @@ use App\Http\Controllers\EnvioController;
 use App\Http\Controllers\FrutasController;
 use App\Http\Controllers\ProvedorController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\cajachicaController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -50,6 +51,11 @@ Route::get('cliente/listar',[ClienteController::class,'index']);//nuevo
 Route::post('cliente/store',[ClienteController::class,'store']);//nuevo
 //venta
 Route::post('envio/store',[EnvioController::class,'store']);//nuevo
+
+//caja chica
+Route::post('cajachica/store',[CajachicaController::class,'store']);//nuevo
+Route::post('cajachica/show',[CajachicaController::class,'show']);//nuevo
+
 
 
 

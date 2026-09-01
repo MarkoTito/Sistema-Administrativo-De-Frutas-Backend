@@ -8,7 +8,7 @@ class EnvioController extends Controller
 {
     //
     public function store(Request $request){
-        return response()->json(['mensaje'=>$request->costo_estiba]); 
+        return response()->json(['Id_fruta_arra0'=>$request->detalles[0]['id_fruta']]); 
             
     }
 }
