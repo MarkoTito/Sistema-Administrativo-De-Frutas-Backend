@@ -1,0 +1,1 @@
+<?php require 'vendor/autoload.php'; $app = require_once 'bootstrap/app.php'; $app->make('Illuminate\Contracts\Console\Kernel')->bootstrap(); $res = DB::select('SELECT column_name FROM information_schema.columns WHERE table_name = ''cjchica'''); foreach($res as $r) echo $r->column_name . PHP_EOL;

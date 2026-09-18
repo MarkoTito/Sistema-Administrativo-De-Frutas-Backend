@@ -42,4 +42,14 @@ class CajaChicaController extends Controller
 
         return response()->json([$respuesta]);
     }
+
+    public function index()
+    {
+        $respuesta = DB::table('cjchica')
+            ->select('descripcion', 'mmonto', 'fecha_registro')
+            ->orderBy('fecha_registro', 'desc')
+            ->get();
+            
+        return response()->json([$respuesta]);
+    }
 }

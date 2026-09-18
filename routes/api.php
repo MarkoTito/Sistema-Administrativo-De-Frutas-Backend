@@ -49,12 +49,15 @@ Route::post('fruta/listar',[FrutasController::class,'index']);
 //cliente
 Route::get('cliente/listar',[ClienteController::class,'index']);//nuevo
 Route::post('cliente/store',[ClienteController::class,'store']);//nuevo
+Route::post('cliente/update',[ClienteController::class,'update']);
+Route::post('cliente/cambiar-estado',[ClienteController::class,'changer']);
 //venta
 Route::post('envio/store',[EnvioController::class,'store']);//nuevo
 
 //caja chica
 Route::post('cajachica/store',[CajachicaController::class,'store']);//nuevo
 Route::post('cajachica/show',[CajachicaController::class,'show']);//nuevo
+Route::get('cajachica/index',[CajachicaController::class,'index']);
 
 
 
